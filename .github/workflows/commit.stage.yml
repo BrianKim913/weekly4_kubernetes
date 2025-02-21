@@ -1,4 +1,4 @@
-name: Commit Stage
+name: Docker Image CI
 on: push
 
 env:
