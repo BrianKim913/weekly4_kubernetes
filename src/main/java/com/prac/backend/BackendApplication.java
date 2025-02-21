@@ -18,4 +18,14 @@ public class BackendApplication {
 		System.out.print("request");
 		return "Hello, kubernates prac";
 	}
+
+	@GetMapping("/loadtest")
+	public String loadTest() {
+		System.out.print("request");
+		long result =0;
+		for (int i = 0; i < 1000000; i++) {
+			result += (long) Math.sqrt(i);
+		}
+		return "로드테스트"+ result ;
+	}
 }
