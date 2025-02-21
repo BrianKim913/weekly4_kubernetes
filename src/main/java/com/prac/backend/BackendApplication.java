@@ -15,6 +15,7 @@ public class BackendApplication {
 
 	@GetMapping("/")
 	public String helloKubernates() {
+		System.out.print("request");
 		return "Hello, kubernates prac";
 	}
 }
