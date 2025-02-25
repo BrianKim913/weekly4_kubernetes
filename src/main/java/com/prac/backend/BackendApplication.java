@@ -2,6 +2,7 @@ package com.prac.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
@@ -15,10 +16,10 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
-	@GetMapping("/")
-	public String helloKubernates() {
+	@GetMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
+	public String helloWorld() {
 		logger.info("Request received");
-		return "Hello, kubernates prac";
+		return "<h1>Test-Prep-Ai.com</h1><h2>당신의 시험을 AI가 책임집니다!</h2>";
 	}
 
 	@GetMapping("/loadtest")
