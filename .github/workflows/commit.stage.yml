@@ -4,7 +4,7 @@ on: push
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: briankim913/weekly4_kubernetes
-  VERSION: 1.2
+  VERSION: 1.3
 jobs:
   build:
     name: Build and Test
@@ -25,7 +25,7 @@ jobs:
 
   package:
     name: Package and Publish
-    if: ${{ github.ref == 'refs/heads/main' }} #메인 브랜치에서 만 해당 잡을 실행
+    if: ${{ github.ref == 'refs/heads/main' }} #메인 브랜치에서 만 해당 잡 실행
     needs: [ build ] #빌드가 성공적으로 됬을 때만 실행
     runs-on: ubuntu-22.04
     permissions:
@@ -34,7 +34,7 @@ jobs:
       security-events: write
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v3 #현재 git repository를 체크아웃
+        uses: actions/checkout@v3 #현재 git repository 소스코드 확인
 
       - name: Set up JDK
         uses: actions/setup-java@v3 # 자바 런타임 설치 및 설정
