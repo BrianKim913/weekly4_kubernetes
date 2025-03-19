@@ -45,7 +45,7 @@ public class BackendApplication {
 		return "<h1>Test-Prep-Ai.com</h1><h2>당신의 시험을 AI가 책임집니다!</h2>";
 	}
 
-	@GetMapping("/loadtest")
+	@GetMapping("/api/loadtest")
 	public String loadTest() {
 		logger.info("Load test Request received");
 		long result =0;

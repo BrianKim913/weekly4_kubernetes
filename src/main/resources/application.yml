@@ -1,6 +1,6 @@
 server:
   port: 9001
-  #graceful shutdown ???
+  #graceful shutdown
   shutdown: graceful
   tomcat:
     connection-timeout: 3s
