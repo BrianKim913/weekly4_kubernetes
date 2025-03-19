@@ -12,6 +12,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.UUID;
+
 @SpringBootApplication
 @RestController
 public class BackendApplication {
@@ -47,12 +49,22 @@ public class BackendApplication {
 
 	@GetMapping("/api/loadtest")
 	public String loadTest() {
-		logger.info("Load test Request received");
-		long result =0;
-		for (int i = 0; i < 1000000; i++) {
-			result += (long) Math.sqrt(i);
+		String requestId = UUID.randomUUID().toString().substring(0, 8);
+		logger.info("Load test request received [ID: {}] through /api/loadtest path", requestId);
+
+		long timestamp = System.currentTimeMillis();
+		long iterations = 800000 + (timestamp % 400000); // Vary between 800K-1.2M iterations
+
+		long startTime = System.nanoTime();
+		double result = 0;
+
+		for (int i = 0; i < iterations; i++) {
+			result += (long) (Math.sqrt(i) * Math.sin(i * 0.01));
 		}
-		logger.info("Load test result :" + result);
-		return "로드테스트"+ result ;
+		long duration = (System.nanoTime() - startTime) / 1000000;
+		logger.info("Load test [ID: {}] completed in {}ms - Result: {:.2f}, Iterations: {}",
+				requestId, duration, result, iterations);
+		return String.format("로드테스트 [%s] - 시간: %d ms, 반복: %d, 결과: %.2f",
+				requestId, duration, iterations, result);
 	}
 }
