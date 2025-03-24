@@ -4,14 +4,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import java.util.List;
 import java.util.UUID;
 
 @SpringBootApplication
@@ -21,7 +21,7 @@ public class BackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
-
+	private EventRepository eventRepository;
 	@Bean
 	public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -66,5 +66,17 @@ public class BackendApplication {
 				requestId, duration, result, iterations);
 		return String.format("로드테스트 [%s] - 시간: %d ms, 반복: %d, 결과: %.2f",
 				requestId, duration, iterations, result);
+	}
+
+	@PostMapping("/api/submit")
+	public Event submit(@RequestBody Event event) {
+		logger.info("Submitting event: {}", event.getTitle());
+		return eventRepository.save(event);
+	}
+
+	@GetMapping("/api/retrieve")
+	public List<Event> retrieve() {
+		logger.info("Retrieving all events");
+		return eventRepository.findAll();
 	}
 }

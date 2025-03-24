@@ -15,3 +15,7 @@ spring:
   lifecycle:
     #grace period 15?
     timeout-per-shutdown-phase: 15s
+  datasource:
+    username: testcluster
+    password: 123qwe123
+    url: jdbc:postgresql://rds-primary.c160osi2k7qo.ap-northeast-2.rds.amazonaws.com:5432/mydb
