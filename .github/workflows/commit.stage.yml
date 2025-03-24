@@ -4,7 +4,7 @@ on: push
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: briankim913/weekly4_kubernetes
-  VERSION: 2.0.0
+  VERSION: 2.0.1
 jobs:
   build:
     name: Build and Test
