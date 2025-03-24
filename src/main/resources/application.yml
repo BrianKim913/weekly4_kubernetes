@@ -19,3 +19,6 @@ spring:
     username: testcluster
     password: 123qwe123
     url: jdbc:postgresql://rds-primary.c160osi2k7qo.ap-northeast-2.rds.amazonaws.com:5432/mydb
+  jpa:
+    hibernate:
+      ddl-auto: create
