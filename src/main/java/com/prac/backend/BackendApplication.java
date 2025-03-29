@@ -29,13 +29,12 @@ public class BackendApplication {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = new CorsConfiguration();
 
-		// Allow all origins
+	
 		config.addAllowedOrigin("*");
 
-		// Allow all headers
+	
 		config.addAllowedHeader("*");
 
-		// Allow all methods (GET, POST, PUT, DELETE, etc.)
 		config.addAllowedMethod("*");
 
 		source.registerCorsConfiguration("/**", config);
@@ -55,7 +54,7 @@ public class BackendApplication {
 		logger.info("Load test request received [ID: {}] through /api/loadtest path", requestId);
 
 		long timestamp = System.currentTimeMillis();
-		long iterations = 800000 + (timestamp % 400000); // Vary between 800K-1.2M iterations
+		long iterations = 800000 + (timestamp % 400000); 
 
 		long startTime = System.nanoTime();
 		double result = 0;
